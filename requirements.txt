@@ -1,0 +1,17 @@
+# Adaptive FocusStack Pro - Dependencies
+# Install with: pip install -r requirements.txt
+
+# Required dependencies
+opencv-python>=4.5.0      # Computer vision library (alignment, stacking, GPU acceleration)
+numpy>=1.19.0             # Numerical operations and array processing
+Pillow>=8.0.0             # Image I/O and scaling (PIL)
+
+# Optional but recommended
+psutil>=5.8.0             # System resource monitoring (RAM detection) - has fallback to wmic on Windows
+numba>=0.54.0             # JIT compilation for faster weight calculations (40% speedup in Pass 2)
+
+# For GUI
+tkinter                   # Usually included with Python, required for gui.py
+
+# Development (optional)
+# pytest>=6.0.0           # For running tests (if tests exist)

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+Thumbs.db
+*.jpg
+*.zip
+profile_results.txt
