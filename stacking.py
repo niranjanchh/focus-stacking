@@ -587,8 +587,8 @@ class FocusStacker:
                 # 3. Edge Refinement (Ultra-tight Anti-Aliasing)
                 refined_masks = []
                 sum_mask = np.zeros((ch, cw), dtype=np.float32)
-                # Dynamic feathering scaled to image resolution for clean transitions
-                blur_size = max(5, int(math.sqrt(cw * ch) / 800))
+                # High-radius feathering for ultra-smooth depth map transitions (commercial-grade)
+                blur_size = max(15, int(math.sqrt(cw * ch) / 100))
                 if blur_size % 2 == 0: blur_size += 1
                 
                 for i in range(n_images):
@@ -705,8 +705,7 @@ class FocusStacker:
                 weight = weights_small[i]
                 if self.energy_scale < 1.0:
                     weight = cv2.resize(weight, (cw, ch), interpolation=cv2.INTER_LINEAR)
-                    # Restore hard edges after upscaling to preserve micro-texture
-                    weight = (weight > 0.5).astype(np.float32)
+                    # Removed hard-edge thresholding to allow soft blending in pyramid
                     
                 gp_img = [img]
                 gp_weight = [weight.astype(np.float32)]
